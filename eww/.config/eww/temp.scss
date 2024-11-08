@@ -1,0 +1,227 @@
+$background-1:#292e38;
+$background-2:#2b303b; 
+$background-3:#313744;
+$background-4:#404859;
+
+$foreground-1:#f9fafb; 
+$foreground-2:#d7d9dd;
+$foreground-3:#b4b8bf; 
+$foreground-4:#6f7582; 
+
+$opacity-1:0.2;
+$opacity-2:0.6;
+$opacity-3:0.8;
+$opacity-4:0.9;
+
+
+* {
+  all: unset;
+  // font-family: Comfortaa, Overpass Nerd Font;
+  font-family: Comfortaa, JetBrainsMono Nerd Font;
+  // font-family: JetBrainsMono Nerd Font;
+  // font-family: Fira Code;
+  font-weight: bold;
+}
+
+
+.bar-container {
+  background: rgba($background-1,$opacity-1);  
+}
+
+.container {
+  background: rgba($background-2, $opacity-2);
+  color: $foreground-1;
+
+  border-radius: 6px;
+  margin: 3px;
+}
+
+.contrast-container {
+  background: $foreground-1;
+  color: $background-2;
+}
+
+.separator {
+  color: $foreground-2;
+}
+
+tooltip {
+  background: rgba($background-2, $opacity-4);
+  color: $foreground-1;
+
+  border-radius: 6px;
+  font-size: 16px;
+}
+
+.highlighted {
+  color: $foreground-3;
+  
+  &:hover {
+    color: $foreground-1;
+  }
+}
+
+.highlighted-contrast {
+  color: $foreground-4;
+
+  &:hover {
+    color: $background-1;
+  }
+}
+
+
+
+// clock
+
+
+// keyboard layout
+
+.keyboard-layout-container {
+  margin-bottom: 6px;
+  font-size: 14px;
+}
+
+// workspaces
+
+.workspace-icon {
+  font-size: 22px;
+  padding-right: 0.5rem;
+  font-family: JetBrainsMono Nerd Font;
+}
+
+.workspace-element {
+  color: $foreground-4;
+
+  &:hover {
+    color: $background-3;
+  }
+}
+
+.workspace-element-active {
+  border-left: solid $background-1 3px;
+  color: $background-1;
+}
+
+// circular metrics
+
+
+// metrics
+
+.system-monitor {
+  padding: 6px 0;
+}
+
+scale trough highlight {
+  background: $foreground-1;
+
+  border-radius: 3px;
+}
+
+scale trough {
+  background: $background-3;
+
+  border-radius: 3px;
+  min-height: 100px;
+  min-width: 8px;
+}
+
+// battery
+
+.battery-icon {
+  font-family: JetBrainsMono Nerd Font;
+  font-size: 24px;
+  padding-right: 0.1rem;
+}
+
+.battery-label {
+  font-size: 14px;
+  margin-bottom: 6px;
+}
+
+// hidden scales
+
+.hidden-scale-label {
+  font-family: "Overpass Nerd Font"
+}
+
+.hidden-scale {
+  padding: 6px 0;
+
+  highlight {
+  }
+ 
+  trough {
+    min-width: 10px;
+  }
+}
+
+// hidden label
+.hidden-label-main {
+  font-family: "Overpass Nerd Font"
+}
+
+.hidden-label-secondary {
+  font-size: 14px;
+  padding: 6px 0;
+}
+
+//tray
+
+.tray {
+  margin: 3px;
+  padding: 4px 0;
+}
+
+menu {
+  padding: 4px;
+  border-radius: 6px;
+  background: rgba($background-2, $opacity-4);
+
+  >menuitem {
+    font-size: 15px;
+    font-weight: normal;
+    padding: 4px 12px;
+    border-radius: 6px;
+
+    // &:disabled label {
+    //   color: red;
+    // }
+
+    &:hover {
+        background: rgba($background-1, $opacity-4);
+    }
+  }
+
+  // separator {
+  //   padding-top: 1px;
+  //
+  //   &:last-child {
+  //     padding: unset;
+  //   }
+  // }
+}
+
+
+// music
+
+.music {
+  font-size: 14px;
+  padding: 8px 0;
+}
+
+.music-button {
+  label {
+    font-family: "Overpass Nerd Font";
+    min-height: 20px;
+  }
+}
+
+.power-button {
+  * {
+     font-family: "Overpass Nerd Font";
+   }
+}
+
+.music-label {
+  // font-size: 15px;
+}

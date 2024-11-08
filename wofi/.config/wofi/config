@@ -1,0 +1,12 @@
+mode=drun
+
+allow_images=true
+image_size=48
+width=500
+
+insensitive=true
+
+halign=fill
+content_halign=fill
+
+no_actions=true

@@ -1,0 +1,29 @@
+(defwindow shutdown
+  :monitor 0
+  :exclusive false 
+  ; :stacking "overlay"
+  :namespace "eww-bar"
+  :focusable true
+  :geometry (geometry 
+    :x -42
+    :width "100%"
+    :height "100%")
+  (shutdown))
+
+(defwidget shutdown[]
+  (eventbox :onrightclick "${EWW_CMD} close shutdown"
+    (box :vexpand false 
+         :hexpand false
+         :valign "center"
+         :halign "center"
+         :orientation "v"
+      (box
+        (button :width "200" :height "200" :onclick "shutdown -P now" 
+          "") 
+        (button :width "200" :height "200":onclick "reboot"
+          ""))
+      (box
+        (button :width "200" :height "200" :onclick "hyprctl dispatch exit" 
+          "") 
+        (button :width "200" :height "200":onclick "echo tick"
+          "")))))

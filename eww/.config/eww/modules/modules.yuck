@@ -1,0 +1,56 @@
+(defvar reveal_time "0.4")
+(defvar animation-time "400ms")
+
+(defwidget slider[orientation icon onchange value ?class]
+  (box :orientation "${orientation}"
+       :space-evenly false
+       :class "${class}"
+    (label :class "icon"
+           :text "${icon}")
+    (scale :onchange onchange
+           :value "${value}"
+           :orientation "${orientation}")))
+
+(defwidget metric [value ?class]
+  (progress :hexpand false :halign "center" :class "${class}"
+         :flipped true 
+         :orientation "v" 
+         :value value))
+
+(defwidget hidden-scale[icon value reveal_val reveal_name onchange ?class]
+  (eventbox :onhover "scripts/set-delayed.sh ${reveal_name} true ${reveal_time}" 
+            :onhoverlost "scripts/set-delayed.sh ${reveal_name} false"
+            :class "${class} hidden-scale"
+    (box :orientation "v"
+         :space-evenly false
+      (revealer :transition "slidedown" 
+                :reveal reveal_val
+                :duration "${animation-time}"
+        (scale :hexpand false :halign "center" :class "hidden-scale" 
+               :onchange onchange
+               :value "${value}" 
+               :flipped true
+               :orientation "v"
+               :max 101 
+               :min 0 ))
+      (label :class "icon"
+             :text "${icon}"))))
+
+(defwidget hidden-label[icon label reveal_val reveal_name] 
+  (eventbox :onhover "scripts/set-delayed.sh ${reveal_name} true ${reveal_time}"
+            :onhoverlost "scripts/set-delayed.sh ${reveal_name} false" 
+    (box :orientation "v" 
+         :space-evenly false 
+      (revealer :transition "slidedown" 
+                :reveal reveal_val 
+                :duration "${animation-time}" 
+        (label :text "${label}" 
+               :angle 90))
+      (label :text "${icon}" 
+             :class "icon"))))
+
+(defwidget separator[]
+  (box :class "separator"
+    (label :text "|" 
+           :angle 90
+           :yalign 0.5 :justify "center" )))

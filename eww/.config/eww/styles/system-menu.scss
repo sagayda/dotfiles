@@ -1,0 +1,75 @@
+.system-menu {
+  background: rgba($bg-window-color, 0.2);
+  border-radius: 14px;
+  font-family: Comfortaa;
+}
+
+.system-menu .slider {
+  .icon {
+    font-size: 26px;
+  }
+
+  scale.horizontal trough {
+    min-width: 250px;
+    min-height: 12px;
+  }
+
+  scale.vertical trough {
+    min-width: 12px;
+    min-height: 250px;
+  }
+}
+
+.system-menu .audio {
+  margin: 12px;
+
+  .icon {
+    font-size: 16px;
+    padding: 0 12px;
+  }
+
+  .audio-element {
+    padding: 6px;
+  }
+
+  .wp {
+    border-radius: 8px;
+    background: darkslategray;
+
+    .wp-selected,
+    .wp-available {
+      padding: 0;
+      margin: 0;
+    }
+
+    .wp-selected-label {
+      margin: 6px 20px;
+    }
+
+    .wp-reveal-button {
+      margin: 0;
+      padding: 0;
+      border-radius: 0 8px 8px 0;
+    }
+
+    button {
+      border-radius: 8px;
+    }
+  }
+
+  .wp2 {
+    trough {
+      min-height: 16px;
+      min-width: 250px;
+    }
+
+    .wp-selected {
+      font-weight: bold;
+      color: $fg-element-color;
+    }
+
+    .wp-available {
+      color: $fg-element-color-dark;
+    }
+  }
+}

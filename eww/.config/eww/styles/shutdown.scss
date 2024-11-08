@@ -1,0 +1,11 @@
+.shutdown {
+  background: rgba($bg-window-color, 0.2);
+  font-family: Overpass Nerd Font;
+  font-weight: bold;
+  font-size: 64px;
+
+  button {
+    margin: 16px;
+    border-radius: 32px;
+  }
+}

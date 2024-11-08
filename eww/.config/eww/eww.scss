@@ -1,0 +1,18 @@
+@import "styles/colors.scss";
+
+@import "styles/modules.scss";
+
+@import "styles/main.scss";
+
+@import "styles/popup.scss";
+@import "styles/shutdown.scss";
+@import "styles/system-menu.scss";
+
+.test {
+  trough {
+    highlight {
+      background: darkslategray;
+    }
+    min-height: 20px;
+  }
+}

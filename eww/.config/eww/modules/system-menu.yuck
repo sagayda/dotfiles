@@ -1,0 +1,112 @@
+(deflisten wp_json :initial '{"default_source":{"description":""},"default_sink":{"description":""},"sinks":[],"sources":[], "sources_count":0,"sinks_count":0}' "scripts/sinks.lua")
+
+(defwindow system-menu
+  :monitor 0
+  :exclusive false 
+  :namespace "eww-bar"
+  :focusable false
+  :geometry (geometry 
+              :x 6
+              :y 6
+              :anchor "bottom left"
+              :width "20%"
+              :height "10%")
+  (box :space-evenly false :orientation "v"
+    ; (slider :class "slider" :orientation "h" :icon "" :value "50" :onchange "" )
+    ; (slider :class "slider" :orientation "h" :icon "󰃠" :value "50" :onchange "" )
+    ; (sources :json wp_json)))
+    (audio :class "audio")))
+    ; (expander :expanded false
+    ;   (box
+    ;     (label :text "smt")
+    ;     (label :text "other")))))
+
+(defvar source_reveal false)
+(defvar sink_reveal false)
+
+(defwidget audio[?class]
+  (box :class {class}
+       :orientation "v"
+       :space-evenly false
+    (box :class "${class}-element"
+         :orientation "h"
+         :space-evenly false
+      (wp2 :nodes {wp_json.sources} 
+          :nodes-count {wp_json.sources_count}
+          :selected {wp_json.default_source}
+          :reveal source_reveal
+          :reveal-name "source_reveal"
+          :icon ""))
+    (box :class "${class}-element" 
+         :orientation "h" 
+         :space-evenly false
+      (wp2 :nodes {wp_json.sinks} 
+          :nodes-count {wp_json.sinks_count}
+          :selected {wp_json.default_sink}
+          :reveal sink_reveal
+          :reveal-name "sink_reveal"
+          :icon ""))))
+
+(defwidget wp[nodes nodes-count selected reveal reveal-name]
+  (box :class "wp"
+       :orientation "v" 
+       :space-evenly false 
+    (box :class "wp-selected" 
+         :space-evenly false
+        (label :class "wp-selected-label"
+               :hexpand true
+               :text "${selected.description}")
+        (literal :content {nodes-count <= 1 ? '' : '(button :class "wp-reveal-button" :vexpand true :onclick `${EWW_CMD} update ${reveal-name}=${reveal ? 'false' : 'true'}` (label :class "icon" :vexpand true :text ""))'}))
+    (revealer :transition "slidedown"
+              :reveal reveal
+      (box :orientation "v"
+           :space-evenly false
+        (for node in {nodes-count > 1 ? nodes : "[]"}
+          (button :class "wp-available" :onclick "wpctl set-default ${node.id}"
+            "${node.description}"))))))
+
+(defwidget wp2[nodes nodes-count selected reveal reveal-name icon]
+  (box :hexpand true
+       :class "wp2"
+       :orientation "v"
+       :space-evenly false
+    (box :orientation "h"
+         :space-evenly false
+      (label :class "icon"
+             :text {icon})
+      (scale :hexpand true
+             :min 0
+             :max 100
+             :value 44)
+      (literal :content {nodes-count <= 1 ? '' : '(button :class "wp-reveal-button" :vexpand true :onclick `${EWW_CMD} update ${reveal-name}=${reveal ? 'false' : 'true'}` (label :class "icon" :vexpand true :text ""))'}))
+    (revealer :transition "slidedown"
+              :reveal reveal
+      (box :orientation "v"
+           :space-evenly false
+        (for node in {nodes-count > 1 ? nodes : "[]"}
+          (button :class "wp-available${node.id == selected.id ? ' wp-selected' : ''}" :onclick "wpctl set-default ${node.id}"
+            "${node.description}"))))))
+
+; (defwidget wp[nodes nodes-count selected reveal reveal-name]
+;   (box :class "wp"
+;        :orientation "v" 
+;        :space-evenly false 
+;     (button :class "wp-selected" 
+;             :onclick {nodes-count <= 1 ? '' : "${EWW_CMD} update ${reveal-name}=${reveal ? 'false' : 'true'}"}
+;       (box :orientation "h" 
+;            :space-evenly false
+;         (label :hexpand true
+;                :text "${selected.description}")
+;         ; (literal :content {nodes-count <= 1 ? '' : '(label :hexpand "false" :class "icon" :text "")'})
+;         ; (expander :expanded {nodes-count > 1}
+;         (label :hexpand false
+;                :halign "end"
+;                :class "icon"
+;                :text "${nodes-count > 1 ? '' : ''}")))
+;     (revealer :transition "slidedown"
+;               :reveal reveal
+;       (box :orientation "v"
+;            :space-evenly false
+;         (for node in {nodes-count > 1 ? nodes : "[]"}
+;           (button :class "wp-available" :onclick "wpctl set-default ${node.id}"
+;             "${node.description}"))))))

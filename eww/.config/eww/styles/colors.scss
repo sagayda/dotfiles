@@ -1,0 +1,27 @@
+$bg-window-color: #212121;
+$bg-container-color: #585653;
+$bg-element-color: #8f8b84;
+
+@function hover-color($bg-color, $fg-color) {
+  @return mix($bg-color, $fg-color, 95%);
+}
+
+@function active-color($bg-color, $fg-color) {
+  @return mix($bg-color, $fg-color, 90%);
+}
+
+$fg-element-color: #fdf5e6;
+$fg-element-color-dark: #fdf5e6;
+
+$fg-element-color-hover: #e2dbce;
+$fg-element-color-active: #c6c0b5;
+
+// sliders / scales
+// tooltips / contexts
+// shadows
+
+// $bg-window-color: #1d1d2c;
+// $bg-container-color: #212121;
+//
+// $fg-element-color: #bfb1a6;
+// $fg-element-color-dark: #a3968c;

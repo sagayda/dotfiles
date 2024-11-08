@@ -1,0 +1,262 @@
+(include "./modules/modules.yuck")
+(include "./modules/popup.yuck")
+(include "./modules/shutdown.yuck")
+(include "./modules/system-menu.yuck")
+
+
+
+(defwindow bar
+	:monitor 0
+	:exclusive true
+  :namespace "eww-bar"
+	:stacking "fg"
+  :geometry (geometry 
+			:width "40"
+			:height "100%"
+			:anchor "center left")
+  (bar_container))
+
+; ----- MAIN BOX -----
+
+(defwidget bar_container[]
+  (centerbox :class "bar-container" :orientation "v" 
+    (box :space-evenly false :vexpand true :orientation "v" 
+      (power-menu)
+      (workspace )
+      (box :vexpand true)
+      (system_monitor)
+      (box :vexpand true))    
+    (box :vexpand false :valign "center" :orientation "v"
+      (clock))
+    (box :vexpand true :space-evenly false :orientation "v" 
+      (box :vexpand true)
+      (box :visible "${current_song != '{}'}"
+        (music2))
+      (box :vexpand true)
+      (tray)
+      (box :orientation "v" :class "container visual system-control" :space-evenly false
+        (brightness)
+        (volume)
+        (wifi)
+        (battery))
+      (box :orientation "v" :class "container" :space-evenly false)
+      (keyboard_layout))))
+
+; ----- CLOCK -----
+
+(defwidget clock[]
+  (box :class "contrast-container" :tooltip "${formattime(EWW_TIME, "%A, %e %B")}"
+    (overlay 
+      (label :show-truncated false
+             :vexpand "false" 
+             :class "clock-label-main" 
+             :text "${formattime(EWW_TIME, "%H")}")
+      (label :class "clock-label-secondary"
+             :valign "start"
+             :text "${formattime(EWW_TIME, "%M")}" )
+      (label :class "clock-label-secondary"
+             :valign "end"
+             :text "${formattime(EWW_TIME, "%S")}"))))
+
+; ----- KEYBOARD LAYOUT -----
+
+(deflisten current_keyboard_layout "scripts/language.sh")
+
+(defwidget keyboard_layout[]
+  (box :class "keyboard-layout-container"
+    current_keyboard_layout))
+
+; ----- WORKSPACES -----
+
+(defvar workspaces_json '[{"icon":"","id":1},{"icon":"","id":2},{"icon":"","id":3},{"icon":"","id":4},{"icon":"","id":5}]')
+(deflisten active_workspace :initial "1" "scripts/workspaces_new.sh")
+
+(defwidget workspace[]
+  (box :class "container visual"
+       :orientation "v"
+       :hexpand true   
+    (for elem in workspaces_json
+        (button :halign "fill" 
+                :class 'workspace ${ elem.id == active_workspace ? "workspace-active" : "workspace-inactive" }' 
+                :onclick "hyprctl dispatch workspace ${elem.id} > /dev/null" 
+          (label :class "icon"
+                 :text "${elem.icon}")))))
+; )
+
+; ----- SYSTEM MONITOR -----
+
+(defwidget system_monitor[]
+  (box  :class "system-monitor"
+       :orientation "v" 
+       :space-evenly false
+       :spacing 6
+       :tooltip 
+"ram: ${round(EWW_RAM.used_mem / 1000000000, 2)} / ${round(EWW_RAM.total_mem / 1000000000, 2)} Gb
+disk: ${round(EWW_DISK['/'].used / 1000000000, 2)} / ${round(EWW_DISK['/'].total / 1000000000, 2)} Gb
+cpu:  ${round(EWW_CPU.avg, 2)} %"
+    (circular-metric :class "system-circular-metric"
+                     :value {EWW_DISK["/"].used_perc} 
+                     :icon "" )
+    (box :vexpand false 
+      (metric :class "system-metric"
+              :value "${EWW_RAM.used_mem_perc}"
+              )
+      (metric :class "system-metric"
+              :value "${EWW_CPU.avg / 100 * 95 + 5}"
+              ))))
+
+(defwidget circular-metric[value ?class]
+   (circular-progress :class "${class}" 
+                      :value "${value}" 
+                      :thickness 4 
+     (label :text "") ))
+
+; ----- BATTERY -----
+
+(defvar battery_reveal false)
+
+(defpoll battery_json :interval "5s" :initial "{}" "scripts/battery.sh json")
+
+(defwidget battery[] 
+  (hidden-label :icon "${battery_json.icon}" 
+                :label "${battery_json.percent} %"
+                :reveal_val "${battery_reveal}"
+                :reveal_name "battery_reveal"))
+
+; ----- BRIGHTNESS -----
+
+(defvar brightness_reveal false)
+(deflisten brightness_percent :initial "0" "scripts/brightness.sh stream-percent")
+(deflisten brightness_icon :initial "" "scripts/brightness.sh stream-icon")
+
+(defwidget brightness[]
+  (hidden-scale :icon brightness_icon 
+                :value brightness_percent
+                :reveal_val brightness_reveal
+                :reveal_name "brightness_reveal"
+                :onchange "scripts/brightness.sh set-percent {}" ) )
+
+; ----- SOUND -----
+
+(deflisten volume_percent :initial "0" "scripts/volume.sh stream-percent")
+(defvar volume_reveal false)
+
+(defwidget volume[]
+  (hidden-scale :icon "" :value volume_percent :reveal_val volume_reveal :reveal_name "volume_reveal" :onchange "scripts/volume.sh set-percent {}" ))
+
+; ----- TRAY -----
+
+(defwidget tray[]
+  (systray :class "tray" 
+           :orientation "v" 
+           :icon-size 22
+           :spacing 4))
+
+; ----- MUSIC -----
+
+(deflisten current_song :initial '{}' "scripts/music.sh stream")
+(defvar music_reveal false)
+
+(defwidget music2[]
+  (eventbox :onhover "scripts/set-delayed.sh music_reveal true" 
+            :onhoverlost "scripts/set-delayed.sh music_reveal false 1" 
+            :onscroll "scripts/music.sh volume-{}" 
+            :onmiddleclick "scripts/music.sh raise"
+    (box :class "container music" 
+         :orientation "v" 
+         :space-evenly false 
+      (label :class "music-label"
+             :show-truncated true 
+             :angle 90 
+             :text "    ${current_song.title}")
+      (revealer :reveal music_reveal 
+                :transition "slideup" 
+                :duration "${animation-time}" 
+        (box :orientation "v"
+          (separator)
+          (button :class "highlighted music-button" 
+                  :onclick "scripts/music.sh next" 
+            (label :angle 90 :class "icon"
+                   :text ""))
+          (button :class "highlighted music-button" 
+                  :onclick "scripts/music.sh toggle" 
+            (label :angle 90 :class "icon"
+                   :text "${ current_song.status == 'Playing' ? '' : ''}"))
+          (button :class "highlighted music-button" 
+                  :onclick "scripts/music.sh previous"
+            (label :class "icon" :angle 90 
+                   :text "")))))))
+
+; (defwidget music[]
+;   (eventbox :onscroll "scripts/music.sh volume-{}"
+;             :onmiddleclick "scripts/music.sh raise"
+;     (box :class "container music" 
+;          :orientation "v" 
+;          :space-evenly false 
+;       (button :class "music-button" :onclick "scripts/music.sh next" 
+;         (label  :angle 90 
+;                 :text ""))
+;       (button :class "music-button" :onclick "scripts/music.sh toggle" 
+;         (label :angle 90 
+;                :text "${ current_song.status == 'Playing' ? '' : ''}"))
+;       (button :class "music-button" :onclick "scripts/music.sh previous"
+;         (label :angle 90 
+;                :text ""))
+;       (label :class "music-label"
+;              :truncate true 
+;              :show-truncated true 
+;              :angle 90 
+;              :text "   ${current_song.title}"))))
+
+; ----- WIFI -----
+
+(defpoll wifi_json :interval "1s" :initial "{}" "scripts/wifi.sh json")
+(defvar wifi_reveal false)
+
+(defwidget wifi[]
+  (hidden-label :icon "${wifi_json.icon}" 
+                :label "${wifi_json.ssid == '' ? 'Disconnected' : wifi_json.ssid}" 
+                :reveal_val "${wifi_reveal}" 
+                :reveal_name "wifi_reveal" ))
+
+; ----- POWER MENU -----
+
+(defvar power_menu_reveal false)
+
+(defwidget power-menu[] 
+  (button :class "power-menu icon window-button" 
+          :onclick "${EWW_CMD} open shutdown"
+    ""))
+
+; (defwidget power-menu[]
+;   (eventbox :onhover "${EWW_CMD} update power_menu_reveal=true"
+;             :onhoverlost "${EWW_CMD} update power_menu_reveal=false"
+;     (box :class "container" 
+;          :orientation "v" 
+;          :space-evenly false
+;       (button :class "icon window-button" 
+;               :onclick "echo shutdown"
+;         "") 
+;       (revealer :transition "slideup" :duration "${animation-time}" :reveal "${power_menu_reveal}" 
+;         (box :orientation "v" :space-evenly false 
+;           (button :class "icon window-button" :onclick "echo reboot"
+;             "")
+;           (button :class "icon window-button" :onclick "echo logout"
+;             "")
+;           (button :class "icon window-button" :onclick "echo lock"
+;             ""))))))
+
+; ----- abstract widgets -----
+
+; (defwidget metric [value onchange ?class]
+;   (box :orientation "v"
+;        :class "${class}"
+;        :space-evenly false
+;     (scale :min -3 ;; fix for value bar go out of rounded borders at low values (must be a better way)
+;            :max 101
+;            :flipped true
+;            :orientation "v"
+;            :active { onchange != "" }
+;            :value value
+;            :onchange onchange)))
+

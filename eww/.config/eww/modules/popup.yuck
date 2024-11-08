@@ -1,0 +1,34 @@
+(defwindow popup
+	:monitor 0
+	:exclusive false 
+  :stacking "overlay"
+  :namespace "eww-bar"
+  :focusable true
+	:geometry (geometry 
+			:width "15%"
+			:height "10%"
+			:anchor "top left"
+      :x 10 
+      :y 10)
+  (confirmation :on-confirm "echo CON & ${EWW_CMD} close popup" :on-cancel "echo CEN & ${EWW_CMD} close popup" :label "Do you want some milk?"))
+
+(defwidget confirmation[on-confirm on-cancel label ?label-confirm ?label-cancel]
+  (box :orientation "v" 
+       :space-evenly true
+       :class "confirmation-container"
+    (input :onaccept "echo accepted")
+    (label :vexpand true
+           :class "confirmation-label" 
+           :text "${label}"
+           :yalign 1)
+    (box :vexpand false 
+         :valign "end" 
+         :orientation "h"
+         :space-evenly true 
+         :class "confirmation-button-container"
+      (eventbox :onclick "echo smth" 
+        "Text")
+      (button :onclick "${on-confirm}"
+        "Confirm")
+      (button :onclick "${on-cancel}"
+        "Cancel"))))

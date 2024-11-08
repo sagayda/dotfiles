@@ -1,0 +1,202 @@
+.bar {
+  background: rgba($bg-window-color, 0.2);
+  // background: $bg-window-color;
+  // background: transparent;
+  font-family: Comfortaa;
+  font-weight: bold;
+  font-size: 15px;
+  color: $fg-element-color-dark;
+}
+
+scale slider {
+  all: unset;
+}
+
+highlight {
+  background: $fg-element-color;
+}
+
+highlight,
+trough {
+  border-radius: 6px;
+}
+
+progress {
+  background: $fg-element-color-dark;
+  border-radius: 3px;
+  border: none;
+}
+
+progressbar trough {
+  border-radius: 6px;
+  // border: none;
+}
+
+circular-progress {
+  color: $fg-element-color-dark;
+  margin: 0 2px;
+
+  label {
+    margin: 6px;
+    font-family: "Overpass Nerd Font";
+  }
+}
+
+tooltip {
+  background: $bg-window-color;
+  color: $fg-element-color;
+
+  //TODO shadow color variable
+  decoration {
+    box-shadow: 2px 2px 4px rgba(black, 0.4);
+  }
+}
+
+.icon {
+  font-family: "Overpass Nerd Font";
+  // color: $fg-element-color;
+}
+
+.hidden-scale {
+  padding: 6px 0;
+
+  scale trough {
+    min-width: 10px;
+    min-height: 100px;
+  }
+}
+
+.container {
+  // background: $bg-container-color;
+  margin: 3px;
+  border-radius: 6px;
+
+  &.visual {
+    background: rgba($bg-container-color, 0.8);
+  }
+}
+
+button {
+  border-radius: 6;
+  background: transparent;
+  border: none;
+  box-shadow: none;
+
+  color: $fg-element-color-dark;
+
+  &:hover {
+    transition: all 0.3s ease-out;
+    // background: $bg-element-color-hover;
+    color: $fg-element-color;
+    // color: $fg-element-color-hover;
+    background: hover-color($bg-container-color, $fg-element-color);
+  }
+
+  &:active {
+    transition: all 0.1s ease-out;
+    color: $fg-element-color;
+    // color: $fg-element-color-active;
+    // background: $bg-element-color-active;
+    background: active-color($bg-container-color, $fg-element-color);
+  }
+}
+
+.window-button {
+  background: transparent;
+  color: $fg-element-color;
+
+  border: none;
+  box-shadow: none;
+
+  &:hover {
+    transition: all 0.3s ease-in-out;
+    background: hover-color($bg-window-color, $fg-element-color);
+  }
+
+  &:active {
+    transition: all 0.1s ease-in-out;
+    background: active-color($bg-window-color, $fg-element-color);
+  }
+}
+
+// clock
+
+.clock-label-main,
+.clock-label-secondary {
+  color: $fg-element-color;
+  font-weight: bold;
+}
+
+.clock-label-main {
+  padding: 22px 0;
+  font-size: 30px;
+}
+
+.clock-label-secondary {
+  padding: 2px;
+  font-size: 18px;
+}
+
+// system monitor
+
+.system-monitor {
+  padding: 6px 0;
+}
+
+// system control
+
+.system-control {
+  .icon {
+    font-size: 16px;
+    color: $fg-element-color;
+  }
+}
+
+// power menu
+
+.power-menu {
+  margin: 3px;
+  color: $fg-element-color-dark;
+}
+
+// music
+
+.music {
+  padding: 6px 0;
+}
+
+.music-button {
+  padding: 0;
+  margin: 0;
+  min-height: 20px;
+}
+
+.music-button:hover,
+.music-button:active {
+  background: unset;
+}
+
+// wokspace
+
+.workspace {
+  padding: 0;
+  margin: 0;
+
+  .icon {
+    font-size: 20px;
+  }
+}
+
+.workspace-active {
+  transition: border 0.3s ease-in-out;
+  border-left: solid $fg-element-color 3px;
+  color: $fg-element-color;
+
+  // background: active-color($bg-container-color, $fg-element-color);
+  // background: mix($bg-window-color, $bg-container-color, 50%);
+}
+
+//tray
+.tray {
+  margin: 6px 0;
+}
