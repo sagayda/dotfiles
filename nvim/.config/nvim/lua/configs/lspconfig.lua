@@ -17,15 +17,15 @@ for _, lsp in ipairs(servers) do
 end
 
 lspconfig.omnisharp.setup {
-  cmd = { "dotnet", "/home/sagayda/.local/share/nvim/mason/packages/omnisharp/libexec/OmniSharp.dll" },
+  cmd = { "dotnet", "/home/lira/.local/share/nvim/mason/packages/omnisharp/libexec/OmniSharp.dll" },
 }
 
 local configs = require "lspconfig.configs"
 local root_pattern = require("lspconfig.util").root_pattern
 
 local dotnet_path = "/usr/bin/dotnet"
-local avalonia_lsp_path = "/home/sagayda/scripts/bin/avalonia-lsp/avalonia-server/AvaloniaLanguageServer.dll"
-local avalonia_parser_path = "/home/sagayda/scripts/bin/avalonia-lsp/solution-parser/SolutionParser.dll"
+local avalonia_lsp_path = "/home/lira/scripts/bin/avalonia-lsp/avalonia-server/AvaloniaLanguageServer.dll"
+local avalonia_parser_path = "/home/lira/scripts/bin/avalonia-lsp/solution-parser/SolutionParser.dll"
 
 if not configs.avalonia then
   configs.avalonia = {

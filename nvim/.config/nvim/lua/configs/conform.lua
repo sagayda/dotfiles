@@ -5,13 +5,22 @@ local options = {
     css = { "prettier" },
     c = { "my_formatter" },
     cpp = { "my_formatter" },
+    xml = { "xstyler" },
   },
 
-   formatters = {
+  formatters = {
     my_formatter = {
-      command = 'clang-format',
+      command = "clang-format",
       args = '--style="{BasedOnStyle: microsoft}"',
-    }
+    },
+    xmlformat = {
+      prepend_args = { "--preserve", "Window" },
+    },
+    xstyler = {
+      command = "/home/lira/.dotnet/tools/xstyler",
+      stdin = false,
+      args = { "-f", "$FILENAME" },
+    },
   },
 
   format_on_save = {
