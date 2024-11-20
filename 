@@ -1,0 +1,75 @@
+[1mdiff --git a/hypr/.config/hypr/hyprland.conf b/hypr/.config/hypr/hyprland.conf[m
+[1mindex 7e4e23b..8b923de 100644[m
+[1m--- a/hypr/.config/hypr/hyprland.conf[m
+[1m+++ b/hypr/.config/hypr/hyprland.conf[m
+[36m@@ -222,6 +222,17 @@[m [mbind = $mainMod SHIFT, 8, movetoworkspace, 8[m
+ bind = $mainMod SHIFT, 9, movetoworkspace, 9[m
+ bind = $mainMod SHIFT, 0, movetoworkspace, 10[m
+ [m
+[32m+[m[32mbind = $mainMod SHIFT, KP_End, movetoworkspace, 1[m
+[32m+[m[32mbind = $mainMod SHIFT, KP_Down, movetoworkspace, 2[m
+[32m+[m[32mbind = $mainMod SHIFT, KP_Next, movetoworkspace, 3[m
+[32m+[m[32mbind = $mainMod SHIFT, KP_Left, movetoworkspace, 4[m
+[32m+[m[32mbind = $mainMod SHIFT, KP_Begin, movetoworkspace, 5[m
+[32m+[m[32mbind = $mainMod SHIFT, KP_Right, movetoworkspace, 6[m
+[32m+[m[32mbind = $mainMod SHIFT, KP_Home, movetoworkspace, 7[m
+[32m+[m[32mbind = $mainMod SHIFT, KP_Up, movetoworkspace, 8[m
+[32m+[m[32mbind = $mainMod SHIFT, KP_Prior, movetoworkspace, 9[m
+[32m+[m[32mbind = $mainMod SHIFT, KP_Insert, movetoworkspace, 10[m[41m [m
+[32m+[m
+ # Screenshot[m
+ bind = SHIFT ALT, S, exec, hyprshot -m window[m
+ bind = CTRL ALT, S, exec, hyprshot -m region[m
+[1mdiff --git a/nvim/.config/nvim/lua/configs/conform.lua b/nvim/.config/nvim/lua/configs/conform.lua[m
+[1mindex c8eabec..8facbbd 100644[m
+[1m--- a/nvim/.config/nvim/lua/configs/conform.lua[m
+[1m+++ b/nvim/.config/nvim/lua/configs/conform.lua[m
+[36m@@ -5,13 +5,22 @@[m [mlocal options = {[m
+     css = { "prettier" },[m
+     c = { "my_formatter" },[m
+     cpp = { "my_formatter" },[m
+[32m+[m[32m    xml = { "xstyler" },[m
+   },[m
+ [m
+[31m-   formatters = {[m
+[32m+[m[32m  formatters = {[m
+     my_formatter = {[m
+[31m-      command = 'clang-format',[m
+[32m+[m[32m      command = "clang-format",[m
+       args = '--style="{BasedOnStyle: microsoft}"',[m
+[31m-    }[m
+[32m+[m[32m    },[m
+[32m+[m[32m    xmlformat = {[m
+[32m+[m[32m      prepend_args = { "--preserve", "Window" },[m
+[32m+[m[32m    },[m
+[32m+[m[32m    xstyler = {[m
+[32m+[m[32m      command = "/home/lira/.dotnet/tools/xstyler",[m
+[32m+[m[32m      stdin = false,[m
+[32m+[m[32m      args = { "-f", "$FILENAME" },[m
+[32m+[m[32m    },[m
+   },[m
+ [m
+   format_on_save = {[m
+[1mdiff --git a/nvim/.config/nvim/lua/configs/lspconfig.lua b/nvim/.config/nvim/lua/configs/lspconfig.lua[m
+[1mindex 6a3a414..9c5d62a 100644[m
+[1m--- a/nvim/.config/nvim/lua/configs/lspconfig.lua[m
+[1m+++ b/nvim/.config/nvim/lua/configs/lspconfig.lua[m
+[36m@@ -17,15 +17,15 @@[m [mfor _, lsp in ipairs(servers) do[m
+ end[m
+ [m
+ lspconfig.omnisharp.setup {[m
+[31m-  cmd = { "dotnet", "/home/sagayda/.local/share/nvim/mason/packages/omnisharp/libexec/OmniSharp.dll" },[m
+[32m+[m[32m  cmd = { "dotnet", "/home/lira/.local/share/nvim/mason/packages/omnisharp/libexec/OmniSharp.dll" },[m
+ }[m
+ [m
+ local configs = require "lspconfig.configs"[m
+ local root_pattern = require("lspconfig.util").root_pattern[m
+ [m
+ local dotnet_path = "/usr/bin/dotnet"[m
+[31m-local avalonia_lsp_path = "/home/sagayda/scripts/bin/avalonia-lsp/avalonia-server/AvaloniaLanguageServer.dll"[m
+[31m-local avalonia_parser_path = "/home/sagayda/scripts/bin/avalonia-lsp/solution-parser/SolutionParser.dll"[m
+[32m+[m[32mlocal avalonia_lsp_path = "/home/lira/scripts/bin/avalonia-lsp/avalonia-server/AvaloniaLanguageServer.dll"[m
+[32m+[m[32mlocal avalonia_parser_path = "/home/lira/scripts/bin/avalonia-lsp/solution-parser/SolutionParser.dll"[m
+ [m
+ if not configs.avalonia then[m
+   configs.avalonia = {[m

@@ -14,11 +14,18 @@ scale slider {
 
 highlight {
   background: $fg-element-color;
+  border: none;
+}
+
+trough {
+  background: $bg-container-color;
+  border-color: $bg-container-color;
 }
 
 highlight,
 trough {
   border-radius: 6px;
+  // border: none;
 }
 
 progress {
@@ -48,6 +55,7 @@ tooltip {
 
   //TODO shadow color variable
   decoration {
+    padding: 0; // IMPORTANT: fixes shadow being far around of window
     box-shadow: 2px 2px 4px rgba(black, 0.4);
   }
 }

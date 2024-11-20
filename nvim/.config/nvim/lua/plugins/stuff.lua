@@ -1,15 +1,20 @@
 return {
-  { "elkowar/yuck.vim",
+  {
+    "elkowar/yuck.vim",
     -- lazy = false,
     ft = "yuck",
   },
   {
     "NStefan002/speedtyper.nvim",
     cmd = "Speedtyper",
-    opts = { }
+    opts = {},
   },
   {
     "lambdalisue/vim-suda",
-    cmd = {"SudaWrite", "SudaRead"}
-  }
+    cmd = { "SudaWrite", "SudaRead" },
+  },
+  {
+    "vimwiki/vimwiki",
+    lazy = false,
+  },
 }

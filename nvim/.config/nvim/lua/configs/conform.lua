@@ -6,6 +6,7 @@ local options = {
     c = { "my_formatter" },
     cpp = { "my_formatter" },
     xml = { "xstyler" },
+    cs = { "csharpier" },
   },
 
   formatters = {
