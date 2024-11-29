@@ -38,11 +38,12 @@ if not configs.avalonia then
     default_config = {
       name = "Avalonia LSP",
       cmd = {
+        -- i have no fck clue what it this, but it enables avalonia on any C# projects
         dotnet_path,
         avalonia_lsp_path,
       },
       root_dir = root_pattern "*.csproj",
-      filetypes = { "axaml", "xml" },
+      filetypes = { "axaml" },
       -- on_init = function(client)
       --   vim.api.nvim_create_autocmd("BufWritePost", {
       --     pattern = { "*.axaml" },
