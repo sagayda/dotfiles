@@ -1,0 +1,13 @@
+[manager]
+linemode = "size_and_mtime"
+
+[opener]
+proton = [
+  { run = 'portproton "$@"', orphan = true }
+]
+
+[open]
+prepend_rules = [
+  { mime = "application/vnd.microsoft.portable-executable", use = "proton" },
+  { mime = "application/microsoft.portable-executable", use = "proton" }
+]

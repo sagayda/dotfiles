@@ -5,7 +5,13 @@ get_ssid() {
 }
 
 get_signal_strength() {
-  grep "wlan" /proc/net/wireless | awk '{ print ($3 ? int($3 / 70 * 100) : 0) }'
+    res=$(grep "wlan" /proc/net/wireless | awk '{ print ($3 ? int($3 / 70 * 100) : 0) }')
+    if [[ -n "$res" ]]; then
+        echo "$res"
+    else
+        echo "0"
+    fi
+    
 }
 
 get_icon() {

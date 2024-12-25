@@ -3,13 +3,11 @@
 (include "./modules/shutdown.yuck")
 (include "./modules/system-menu.yuck")
 
-
-
 (defwindow bar
 	:monitor 0
 	:exclusive true
   :namespace "eww-bar"
-	:stacking "fg"
+	:stacking "bg"
   :geometry (geometry 
 			:width "40"
 			:height "100%"

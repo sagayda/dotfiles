@@ -1,39 +1,5 @@
-.popup {
-  background: $bg-window-color;
-  border-radius: 14px;
-  font-family: Comfortaa;
-}
-
-.confirmation-container {
-  button {
-    margin: 8px;
-  }
-
-  .confirmation-button-container {
-  //   background: $bg-container-color;
-  //   border-radius: 0 0 14px 14px; 
-    eventbox:hover{
-      background: red;
-    }
-
-    button {
-      background: hover-color($bg-window-color, $bg-element-color);
-    }
-
-    button:hover {
-      transition: all 0.3s ease-out;
-      background: hover-color($bg-window-color, $fg-element-color);
-    }
-
-    button:active {
-      transition: all 0.1s ease-out;
-      background: active-color($bg-window-color, $fg-element-color);
-    }
-  }
-
-  .confirmation-label {
-    // padding: 20px ;
-    margin: 10px;
-    font-size: 18px;
-  }
+.icon-popup {
+  font-size: 52px;
+  margin: 22px;
+  border-radius: 20px;
 }

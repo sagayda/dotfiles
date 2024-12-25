@@ -20,10 +20,10 @@
       (box
         (button :width "200" :height "200" :onclick "shutdown -P now" 
           "") 
-        (button :width "200" :height "200":onclick "reboot"
+        (button :width "200" :height "200":onclick "systemctl reboot"
           ""))
       (box
-        (button :width "200" :height "200" :onclick "hyprctl dispatch exit" 
+        (button :width "200" :height "200" :onclick "loginctl terminate-user \"\"" 
           "") 
         (button :width "200" :height "200":onclick "echo tick"
           "")))))

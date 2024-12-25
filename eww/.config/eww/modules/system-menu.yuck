@@ -1,4 +1,4 @@
-(deflisten wp_json :initial '{"default_source":{"description":""},"default_sink":{"description":""},"sinks":[],"sources":[], "sources_count":0,"sinks_count":0}' "scripts/sinks.lua")
+(deflisten wp_json :initial '{"default_source":{"description":"1","name":"name","id":1,"volume":0.5,"mute":false},"default_sink":{"description":"1","name":"name","id":1,"volume":0.5,"mute":false},"sinks":[{"description":"1","name":"name","id":1,"volume":0.5,"mute":false},{"description":"2","name":"name other","id":2,"volume":0.2,"mute":false}],"sources":[],"sources_count":0,"sinks_count":2}' "cat /home/lira/.config/eww/scripts/suka.json | jq -c")
 
 (defwindow system-menu
   :monitor 0

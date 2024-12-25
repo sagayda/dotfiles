@@ -55,6 +55,11 @@ require("cmp").setup {
   end,
 }
 
+vim.treesitter.language.register("xml", "axaml")
+
+vim.o.langmap =
+  "йЙцЦуУкКеЕнНгГшШщЩзЗхХъЪфФыЫвВаАпПрРоОлЛдДжЖэЭяЯчЧсСмМиИтТьЬбБюЮ.\\,;qQwWeErRtTyYuUiIoOpP[{]}aAsSdDfFgGhHjJkKlL;:'\"zZxXcCvVbBnNmM\\,<.>/?"
+
 -- vim.api.nvim_create_autocmd({ "BufNewFile", "BufRead" }, {
 --   pattern = { "*.axaml" },
 --   callback = function()
