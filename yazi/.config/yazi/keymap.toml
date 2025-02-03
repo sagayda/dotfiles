@@ -1,11 +1,11 @@
 [[manager.prepend_keymap]]
 on  = ["g", "d", "d"]
-run = 'cd /mnt/D/downloads'
+run = 'cd ~/Dirs/Downloads'
 desc = 'Go to Downloads'
 
 [[manager.prepend_keymap]]
 on  = ["g", "d", "o"]
-run = 'cd /mnt/D/documents'
+run = 'cd ~/Dirs/Documents'
 desc = 'Go to Documents'
 
 [[manager.prepend_keymap]]
@@ -15,12 +15,12 @@ desc = 'Go to D'
 
 [[manager.append_keymap]]
 on  = ["g", "p"]
-run = 'cd /mnt/D/pictures'
+run = 'cd ~/Dirs/Pictures'
 desc = 'Go to Pictures'
 
 [[manager.append_keymap]]
 on  = ["g", "v"]
-run = 'cd /mnt/D/videos'
+run = 'cd ~/Dirs/Videos'
 desc = 'Go to Videos'
 
 [[manager.append_keymap]]
@@ -40,12 +40,15 @@ desc = 'Go to rep'
 
 [[manager.prepend_keymap]]
 on  = "y"
-run = [ '''
-	shell --confirm 'for path in "$@"; do echo "file://$path"; done | wl-copy -t text/uri-list'
-''', "yank" ]
+run = [ "yank", "plugin wl-clipboard" ]
 
 [[manager.prepend_keymap]]
 on  = "<C-n>"
 run = '''
 	shell 'dragon-drop -x -i -A -T "$@"' --confirm
 '''
+
+[[manager.prepend_keymap]]
+on   = [ "f", "j" ]
+run  = "plugin first-non-directory"
+desc = "Jumps to the first file"

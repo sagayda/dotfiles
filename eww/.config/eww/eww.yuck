@@ -7,7 +7,7 @@
 	:monitor 0
 	:exclusive true
   :namespace "eww-bar"
-	:stacking "bg"
+	:stacking "bottom"
   :geometry (geometry 
 			:width "40"
 			:height "100%"

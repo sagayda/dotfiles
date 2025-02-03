@@ -51,8 +51,7 @@
     "inhibitors",
     "title",
     "dnd",
-    "notifications",
-    "mpris"
+    "notifications"
   ],
   "widget-config": {
     "inhibitors": {

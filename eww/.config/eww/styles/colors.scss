@@ -1,5 +1,7 @@
-$bg-window-color: #212121;
-$bg-container-color: #585653;
+// $bg-window-color: #212121;
+$bg-window-color: #1d2021;
+// $bg-container-color: #585653;
+$bg-container-color: #3c3836;
 $bg-element-color: #8f8b84;
 
 @function hover-color($bg-color, $fg-color) {
@@ -10,8 +12,10 @@ $bg-element-color: #8f8b84;
   @return mix($bg-color, $fg-color, 90%);
 }
 
-$fg-element-color: #fdf5e6;
-$fg-element-color-dark: #fdf5e6;
+// $fg-element-color: #fdf5e6;
+$fg-element-color: #d5c4a1;
+// $fg-element-color-dark: #fdf5e6;
+$fg-element-color-dark: #fbf1c7;
 
 $fg-element-color-hover: #e2dbce;
 $fg-element-color-active: #c6c0b5;

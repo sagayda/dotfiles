@@ -1,3 +1,5 @@
 export HYPRCURSOR_SIZE=30
 export HYPRCURSOR_THEME=Sweet-cursors-hyprcursor
 export HYPRSHOT_DIR=${HOME}/Dirs/Pictures/Screenshots
+
+export AQ_DRM_DEVICES="/dev/dri/card1:/dev/dri/card0"

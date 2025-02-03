@@ -1,5 +1,5 @@
 [plugin]
-deps = [{ use = "yazi-rs/plugins:full-border", rev = "71c4fc2" }]
+deps = [{ use = "yazi-rs/plugins:full-border", rev = "71c4fc2" }, { use = "dawsers/dual-pane", rev = "c2fed12" }, { use = "lpanebr/yazi-plugins:first-non-directory", rev = "7af4fed" }, { use = "grappas/wl-clipboard", rev = "c4edc4f" }]
 
 [flavor]
 deps = []
