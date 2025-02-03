@@ -1,54 +1,16 @@
-[[manager.prepend_keymap]]
-on  = ["g", "d", "d"]
-run = 'cd ~/Dirs/Downloads'
-desc = 'Go to Downloads'
-
-[[manager.prepend_keymap]]
-on  = ["g", "d", "o"]
-run = 'cd ~/Dirs/Documents'
-desc = 'Go to Documents'
-
-[[manager.prepend_keymap]]
-on  = ["g", "d", "D"]
-run = 'cd /mnt/D'
-desc = 'Go to D'
-
-[[manager.append_keymap]]
-on  = ["g", "p"]
-run = 'cd ~/Dirs/Pictures'
-desc = 'Go to Pictures'
-
-[[manager.append_keymap]]
-on  = ["g", "v"]
-run = 'cd ~/Dirs/Videos'
-desc = 'Go to Videos'
-
-[[manager.append_keymap]]
-on  = ["g", "s"]
-run = 'cd /mnt/D/sagayda'
-desc = 'Go to my folder'
-
-[[manager.append_keymap]]
-on  = ["g", "k"]
-run = 'cd /mnt/D/sagayda/Si Pee Eye'
-desc = 'Go to my KPI folder'
-
-[[manager.append_keymap]]
-on  = ["g", "r"]
-run = 'cd "/mnt/D/sagayda/visual cock/repos"'
-desc = 'Go to rep'
-
-[[manager.prepend_keymap]]
-on  = "y"
-run = [ "yank", "plugin wl-clipboard" ]
-
-[[manager.prepend_keymap]]
-on  = "<C-n>"
-run = '''
-	shell 'dragon-drop -x -i -A -T "$@"' --confirm
-'''
-
-[[manager.prepend_keymap]]
-on   = [ "f", "j" ]
-run  = "plugin first-non-directory"
-desc = "Jumps to the first file"
+[manager]
+prepend_keymap= [
+    { on  = ["g", "d", "d"], run = 'cd ~/Dirs/Downloads', desc = 'Go to Downloads' },
+    { on  = ["g", "d", "o"], run = 'cd ~/Dirs/Documents', desc = 'Go to Documents' },
+    { on  = ["g", "d", "D"], run = 'cd /mnt/D', desc = 'Go to D' },
+    { on  = "y", run = [ "yank", "plugin wl-clipboard" ] },
+    { on  = "<C-n>", run = ''' shell 'dragon-drop -x -i -A -T "$@"' --confirm ''', desc = 'Start drag-and-drop files' },
+    { on   = [ "f", "j" ], run  = "plugin first-non-directory", desc = "Jumps to the first file" }
+]
+append_keymap= [
+    { on  = ["g", "p"], run = 'cd ~/Dirs/Pictures', desc = 'Go to Pictures' },
+    { on  = ["g", "v"], run = 'cd ~/Dirs/Videos', desc = 'Go to Videos' },
+    { on  = ["g", "s"], run = 'cd /mnt/D/sagayda', desc = 'Go to my folder' },
+    { on  = ["g", "k"], run = 'cd /mnt/D/sagayda/Si Pee Eye', desc = 'Go to my KPI folder' },
+    { on  = ["g", "r"], run = 'cd "/mnt/D/sagayda/visual cock/repos"', desc = 'Go to rep' }
+]
