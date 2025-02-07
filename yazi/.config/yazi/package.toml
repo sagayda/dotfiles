@@ -1,5 +1,5 @@
 [plugin]
-deps = [{ use = "yazi-rs/plugins:full-border", rev = "71c4fc2" }, { use = "dawsers/dual-pane", rev = "c2fed12" }, { use = "lpanebr/yazi-plugins:first-non-directory", rev = "7af4fed" }, { use = "grappas/wl-clipboard", rev = "c4edc4f" }]
+deps = [{ use = "yazi-rs/plugins:full-border", rev = "71c4fc2" }, { use = "dawsers/dual-pane", rev = "c2fed12" }, { use = "lpanebr/yazi-plugins:first-non-directory", rev = "7af4fed" }, { use = "grappas/wl-clipboard", rev = "c4edc4f" }, { use = "dawsers/fuse-archive", rev = "a58327c" }, { use = "pirafrank/what-size", rev = "b23e3a4" }]
 
 [flavor]
 deps = []

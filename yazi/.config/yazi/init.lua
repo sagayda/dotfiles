@@ -1,5 +1,8 @@
 require("full-border"):setup()
--- require("dual-pane"):setup()
+require("fuse-archive"):setup({
+	smart_enter = true,
+	mount_dir = "/tmp",
+})
 
 function Linemode:size_and_mtime()
 	local time = math.floor(self._file.cha.mtime or 0)
