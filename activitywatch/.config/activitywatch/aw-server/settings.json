@@ -1,5 +1,5 @@
 {
-    "initialTimestamp": "2024-06-27T13:20:05.486Z",
+    "initialTimestamp": "2024-12-31T19:28:02.425Z",
     "startOfDay": "06:00",
     "startOfWeek": "Monday",
     "durationDefault": 14400,
@@ -7,13 +7,13 @@
     "theme": "dark",
     "newReleaseCheckData": {
         "isEnabled": true,
-        "nextCheckTime": "2024-09-24T21:29:40.837Z",
+        "nextCheckTime": "2025-01-29T19:40:49.445Z",
         "howOftenToCheck": 86400,
         "timesChecked": 0
     },
     "userSatisfactionPollData": {
         "isEnabled": false,
-        "nextPollTime": "2024-07-15T01:58:44.098Z",
+        "nextPollTime": "2025-01-15T19:46:58.637Z",
         "timesPollIsShown": 1
     },
     "classes": [
@@ -27,21 +27,18 @@
                 "Work"
             ],
             "rule": {
-                "type": "none"
+                "regex": "Google Docs|libreoffice|ReText",
+                "type": "regex"
             }
         },
         {
-            "data": {
-                "color": "#194D33"
-            },
             "id": 1,
             "name": [
                 "Work",
                 "Programming"
             ],
             "rule": {
-                "ignore_case": true,
-                "regex": "GitHub|Stack Overflow|BitBucket|Gitlab|vim|Spyder|kate|Ghidra|Scite|rider|code|Boxes|ddterm|tilix",
+                "regex": "GitHub|Stack Overflow|BitBucket|Gitlab|vim|Spyder|kate|Ghidra|Scite",
                 "type": "regex"
             }
         },
@@ -49,30 +46,15 @@
             "id": 2,
             "name": [
                 "Work",
-                "Programming",
-                "ActivityWatch"
-            ],
-            "rule": {
-                "ignore_case": true,
-                "regex": "ActivityWatch|aw-",
-                "type": "regex"
-            }
-        },
-        {
-            "data": {},
-            "id": 3,
-            "name": [
-                "Work",
                 "Image"
             ],
             "rule": {
-                "ignore_case": true,
-                "regex": "GIMP|Inkscape|Pinta",
+                "regex": "GIMP|Inkscape",
                 "type": "regex"
             }
         },
         {
-            "id": 4,
+            "id": 3,
             "name": [
                 "Work",
                 "Video"
@@ -83,7 +65,7 @@
             }
         },
         {
-            "id": 5,
+            "id": 4,
             "name": [
                 "Work",
                 "Audio"
@@ -94,7 +76,7 @@
             }
         },
         {
-            "id": 6,
+            "id": 5,
             "name": [
                 "Work",
                 "3D"
@@ -102,6 +84,18 @@
             "rule": {
                 "regex": "Blender",
                 "type": "regex"
+            }
+        },
+        {
+            "data": {
+                "color": "#F33"
+            },
+            "id": 6,
+            "name": [
+                "Media"
+            ],
+            "rule": {
+                "type": "none"
             }
         },
         {
@@ -114,8 +108,8 @@
                 "Games"
             ],
             "rule": {
-                "ignore_case": true,
-                "regex": "Steam|Minecraft|RimWorld|Elden Ring|KillerFrequency|Rimworld|Satisfactory|7daystodie|Voices of the void|Katana ZERO|hollow knight|oxygen not included",
+                "ignore_case": false,
+                "regex": "Minecraft|RimWorld|DOOMEternal|EmptyShell|Don't Starve Together|steam_app_*|Screw Drivers|Planet Crafter|Hearts of Iron|Project Zomboid|Derail Valley",
                 "type": "regex"
             }
         },
@@ -129,8 +123,7 @@
                 "Video"
             ],
             "rule": {
-                "ignore_case": true,
-                "regex": "YouTube|Plex|VLC|Hidamari",
+                "regex": "YouTube|Plex|VLC",
                 "type": "regex"
             }
         },
@@ -214,40 +207,63 @@
         },
         {
             "data": {
-                "color": "#FCDC00"
+                "color": "#01753b"
             },
             "id": 15,
             "name": [
-                "Media"
-            ],
-            "rule": {
-                "type": "none"
-            }
-        },
-        {
-            "data": {
-                "color": "#FA28FF"
-            },
-            "id": 16,
-            "name": [
-                "Web"
+                "Work",
+                "Programming",
+                "Diagrams"
             ],
             "rule": {
                 "ignore_case": true,
-                "regex": "Vivaldi|Chromium|Firefox",
+                "regex": "Rnote|drawio",
                 "type": "regex"
             }
         },
         {
-            "data": {},
-            "id": 17,
+            "data": {
+                "color": "#FDA1FF"
+            },
+            "id": 16,
             "name": [
-                "Work",
-                "Text"
+                "Browsing"
             ],
             "rule": {
                 "ignore_case": true,
-                "regex": "libreoffice|Google \u0414\u043e\u043a\u0443\u043c\u0435\u043d\u0442\u044b",
+                "regex": "firefox|zen",
+                "type": "regex"
+            }
+        },
+        {
+            "data": {
+                "color": "#68BC00"
+            },
+            "id": 17,
+            "name": [
+                "Work",
+                "Programming",
+                "Terminal"
+            ],
+            "rule": {
+                "ignore_case": true,
+                "regex": "kitty",
+                "type": "regex"
+            }
+        },
+        {
+            "data": {
+                "color": "#194D33"
+            },
+            "id": 18,
+            "name": [
+                "Work",
+                "Programming",
+                "Unity"
+            ],
+            "rule": {
+                "ignore_case": true,
+                "regex": "nvimUnity|Unity",
                 "type": "regex"
             }
         },
@@ -255,29 +271,14 @@
             "data": {
                 "color": "#AB149E"
             },
-            "id": 18,
+            "id": 19,
             "name": [
-                "Web",
+                "Browsing",
                 "AI"
             ],
             "rule": {
                 "ignore_case": true,
-                "regex": "gemini|bard|gpt",
-                "type": "regex"
-            }
-        },
-        {
-            "data": {
-                "color": "#A4DD00"
-            },
-            "id": 19,
-            "name": [
-                "Work",
-                "Meets"
-            ],
-            "rule": {
-                "ignore_case": true,
-                "regex": "Zoom|meet",
+                "regex": "Gemini|GPT",
                 "type": "regex"
             }
         }
@@ -361,5 +362,5 @@
         }
     ],
     "requestTimeout": 30,
-    "always_active_pattern": "youtube|YouTube"
+    "always_active_pattern": "YouTube|Zoom|Google Meet"
 }

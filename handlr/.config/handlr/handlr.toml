@@ -1,0 +1,5 @@
+enable_selector = true
+# selector = "wofi -dmenu -i -p 'Open With: '"
+selector = "fuzzel -l 3 -d"
+# term_exec_args = '-e'
+expand_wildcards = false

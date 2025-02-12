@@ -10,4 +10,4 @@ export EDITOR=nvim
 
 export MANPAGER="nvim +Man!"
 
-export PATH=${PATH}:${HOME}/scripts:${HOME}/.config/eww/controls
+export PATH=${HOME}/scripts:${HOME}/.config/eww/controls:${HOME}/.local/bin:${PATH}
