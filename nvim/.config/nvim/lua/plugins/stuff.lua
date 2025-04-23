@@ -57,4 +57,14 @@ return {
             },
         },
     },
+    {
+        "onsails/lspkind.nvim",
+    },
+    {
+        "gbprod/cutlass.nvim",
+        lazy = false,
+        opts = {
+            cut_key = "x",
+        },
+    },
 }

@@ -14,7 +14,9 @@ prepend_keymap= [
 append_keymap= [
     { on  = ["g", "p"], run = 'cd ~/Dirs/Pictures', desc = 'Go to Pictures' },
     { on  = ["g", "v"], run = 'cd ~/Dirs/Videos', desc = 'Go to Videos' },
+    { on  = ["g", "t"], run = 'cd ~/Dirs/Templates', desc = 'Go to Templates' },
     { on  = ["g", "s"], run = 'cd /mnt/D/sagayda', desc = 'Go to my folder' },
     { on  = ["g", "k"], run = 'cd /mnt/D/sagayda/Si\ Pee\ Eye', desc = 'Go to my KPI folder' },
-    { on  = ["g", "r"], run = 'cd /mnt/D/sagayda/visual\ cock/repos', desc = 'Go to rep' }
+    { on  = ["g", "r"], run = 'cd /mnt/D/sagayda/visual_cock/repos', desc = 'Go to rep' },
+    { on  = ["c", "y"], run = 'yank', desc = 'Copy file' }
 ]

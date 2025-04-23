@@ -1,38 +1,30 @@
 return {
+    -- {
+    --     "iabdelkareem/csharp.nvim",
+    --     enable = false,
+    --     ft = "cs",
+    --     dependencies = {
+    --         "williamboman/mason.nvim", -- Required, automatically installs omnisharp
+    --         "mfussenegger/nvim-dap",
+    --         "Tastyep/structlog.nvim", -- Optional, but highly recommended for debugging
+    --     },
+    --     opts = {
+    --         lsp = {
+    --             omnisharp = {
+    --                 enable = false,
+    --             },
+    --         },
+    --     },
+    -- },
     {
-        "iabdelkareem/csharp.nvim",
-        enable = false,
-        ft = "cs",
-        dependencies = {
-            "williamboman/mason.nvim", -- Required, automatically installs omnisharp
-            "mfussenegger/nvim-dap",
-            "Tastyep/structlog.nvim", -- Optional, but highly recommended for debugging
-            "Issafalcon/lsp-overloads.nvim",
-        },
-        opts = {
-            lsp = {
-                omnisharp = {
-                    enable = false,
-                },
-            },
-        },
+        "Decodetalkers/csharpls-extended-lsp.nvim",
     },
+    -- {
+    --     "Hoffs/omnisharp-extended-lsp.nvim",
+    -- },
     {
         "Issafalcon/lsp-overloads.nvim",
-        ft = "cs",
-        dependencies = {
-            "Decodetalkers/csharpls-extended-lsp.nvim",
-            "Hoffs/omnisharp-extended-lsp.nvim",
-        },
-        opts = {
-            keymaps = {
-                next_signature = "<C-F>",
-                previous_signature = "<C-G>",
-                next_parameter = "<C-l>",
-                previous_parameter = "<C-h>",
-                close_signature = "<A-s>",
-            },
-        },
+        -- cmd = { "LspOverloadsSignature" },
     },
     {
         "nvim-tree/nvim-tree.lua",

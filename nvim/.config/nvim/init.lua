@@ -43,9 +43,9 @@ require("aerial").setup {
         vim.keymap.set("n", "{", "<cmd>AerialPrev<CR>", { buffer = bufnr })
         vim.keymap.set("n", "}", "<cmd>AerialNext<CR>", { buffer = bufnr })
     end,
-    -- backends = { "lsp", "treesitter", "markdown", "asciidoc", "man" },
+    backends = { "lsp", "treesitter", "markdown", "asciidoc", "man" },
     highlight_on_hover = true,
-    manage_folds = true,
+    manage_folds = false,
     show_guides = true,
 }
 -- You probably also want to set a keymap to toggle aerial
@@ -53,8 +53,41 @@ vim.keymap.set("n", "<leader>a", "<cmd>AerialToggle!<CR>")
 
 local luasnip = require "luasnip"
 local cmp = require "cmp"
+local lspkind = require "lspkind"
 
 cmp.setup {
+    completion = {
+        completeopt = "menu,menuone,noselect",
+    },
+    sorting = { priority_weight = 2 },
+    sources = cmp.config.sources {
+        { name = "luasnip", kind = "" },
+        { name = "nvim_lsp" },
+        { name = "buffer" },
+    },
+    formatting = {
+        fields = { "kind", "abbr", "menu" },
+        format = function(entry, vim_item)
+            local kind = lspkind.cmp_format { mode = "symbol_text", maxwidth = 50 }(entry, vim_item)
+            local strings = vim.split(kind.kind, "%s", { trimempty = true })
+            kind.kind = " " .. (strings[1] or "") .. " "
+            kind.menu = "    (" .. (strings[2] or "") .. ")"
+
+            return kind
+        end,
+    },
+    -- formatting = {
+    --     format = lspkind.cmp_format {
+    --         mode = "symbol_text",
+    --         menu = {
+    --             buffer = "[Buffer]",
+    --             nvim_lsp = "[LSP]",
+    --             luasnip = "[LuaSnip]",
+    --             nvim_lua = "[Lua]",
+    --             latex_symbols = "[Latex]",
+    --         },
+    --     },
+    -- },
     enabled = function()
         local is_floating = vim.api.nvim_win_get_config(0).relative ~= ""
         -- local is_snip = require("luasnip").in_snippet()
@@ -63,13 +96,18 @@ cmp.setup {
         end
         return true
     end,
+    experimental = {
+        ghost_text = true,
+    },
+    preselect = cmp.PreselectMode.None,
+
     mapping = {
         ["<Tab>"] = cmp.mapping(function(fallback)
             if cmp.visible() then
                 if not cmp.get_active_entry() then
-                    cmp.select_next_item { count = 0 }
+                    cmp.select_next_item { count = 0, behavior = cmp.SelectBehavior.Select }
                 else
-                    cmp.select_next_item()
+                    cmp.select_next_item { behavior = cmp.SelectBehavior.Select }
                 end
             else
                 fallback()
@@ -79,21 +117,28 @@ cmp.setup {
         ["<S-Tab>"] = cmp.mapping(function(fallback)
             if cmp.visible() then
                 if not cmp.get_active_entry() then
-                    cmp.select_prev_item { count = 0 }
+                    cmp.select_prev_item { count = 0, { behavior = cmp.SelectBehavior.Select } }
                 else
-                    cmp.select_prev_item()
+                    cmp.select_prev_item { behavior = cmp.SelectBehavior.Select }
                 end
             else
                 fallback()
             end
         end, { "i", "s" }),
         ["<CR>"] = cmp.mapping(function(fallback)
-            if luasnip.locally_jumpable(1) then
+            if cmp.visible() then
+                if cmp.get_active_entry() then
+                    cmp.confirm {
+                        select = true,
+                    }
+                elseif luasnip.locally_jumpable(1) then
+                    luasnip.jump(1)
+                else
+                    cmp.select_next_item { count = 0, behavior = cmp.SelectBehavior.Select }
+                    cmp.confirm { select = true }
+                end
+            elseif luasnip.locally_jumpable(1) then
                 luasnip.jump(1)
-            elseif cmp.visible() then
-                cmp.confirm {
-                    select = true,
-                }
             else
                 fallback()
             end
@@ -103,27 +148,8 @@ cmp.setup {
 
 vim.treesitter.language.register("xml", "axaml")
 
--- require("luasnip").filetype_extend("cs", { "unity" })
--- require("luasnip").filetype_extend("cs", { "csharpdoc" })
+vim.lsp.handlers["window/showMessage"] = function(...) end
 
-local function escape(str)
-    -- Эти символы должны быть экранированы, если встречаются в langmap
-    local escape_chars = [[;,."|\]]
-    return vim.fn.escape(str, escape_chars)
-end
-
--- Наборы символов, введенных с зажатым шифтом
-local en_shift = [[~QWERTYUIOP{}ASDFGHJKL:"ZXCVBNM<>]]
-local ru_shift = [[ËЙЦУКЕНГШЩЗХЪФЫВАПРОЛДЖЭЯЧСМИТЬБЮ]]
--- Наборы символов, введенных как есть
--- Здесь я не добавляю ',.' и 'бю', чтобы впоследствии не было рекурсивного вызова комманды
-local en = [[`qwertyuiop[]asdfghjkl;'zxcvbnm]]
-local ru = [[ёйцукенгшщзхъфывапролджэячсмить]]
-vim.opt.langmap = vim.fn.join({
-    --  ; - разделитель, который не нужно экранировать
-    --  |
-    escape(ru_shift)
-        .. ";"
-        .. escape(en_shift),
-    escape(ru) .. ";" .. escape(en),
-}, ",")
+require "yank"
+require "cyrilic"
+require "configs.autocmds"

@@ -4,11 +4,6 @@ rev = "0725851"
 hash = "ae9e1d0c6bfd68cdebc98cc684c22b45"
 
 [[plugin.deps]]
-use = "dawsers/dual-pane"
-rev = "c2fed12"
-hash = "c7c303f806f5bbbdc863f22956876551"
-
-[[plugin.deps]]
 use = "lpanebr/yazi-plugins:first-non-directory"
 rev = "ca18a2c"
 hash = "5c20ffa5171dab34042e03d273dddc5b"

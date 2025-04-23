@@ -4,6 +4,7 @@
 (include "./modules/system-menu.yuck")
 
 (defwindow bar
+	; :monitor "EK251Q G"
 	:monitor 0
 	:exclusive true
   :namespace "eww-bar"

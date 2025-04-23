@@ -1,53 +1,30 @@
 return {
-  {
-    "stevearc/conform.nvim",
-    event = "BufWritePre", -- uncomment for format on save
-    opts = require "configs.conform",
-  },
-
-  -- These are some examples, uncomment them if you want to see them work!
-  {
-    "neovim/nvim-lspconfig",
-    config = function()
-      require "configs.lspconfig"
-    end,
-  },
-
-  {
-    "windwp/nvim-autopairs",
-    opts = {
-      enable_check_bracket_line = false,
+    {
+        "stevearc/conform.nvim",
+        event = "BufWritePre",
+        opts = require "configs.conform",
     },
-  },
 
-  -- {
-  --   "iabdelkareem/csharp.nvim",
-  --   lazy = false,
-  --   dependencies = {
-  --     "williamboman/mason.nvim", -- Required, automatically installs omnisharp
-  --     "mfussenegger/nvim-dap",
-  --     "Tastyep/structlog.nvim", -- Optional, but highly recommended for debugging
-  --   },
-  --   config = function()
-  --     require("mason").setup() -- Mason setup must run before csharp, only if you want to use omnisharp
-  --     require("csharp").setup()
-  --   end,
-  --   opts = {
-  --     lsp = {
-  --       omnisharp = {
-  --         enable = false,
-  --       },
-  --     },
-  --   },
-  -- },
+    {
+        "neovim/nvim-lspconfig",
+        config = function()
+            require "configs.lspconfig"
+        end,
+    },
 
-  -- {
-  -- 	"nvim-treesitter/nvim-treesitter",
-  -- 	opts = {
-  -- 		ensure_installed = {
-  -- 			"vim", "lua", "vimdoc",
-  --      "html", "css"
-  -- 		},
-  -- 	},
-  -- },
+    {
+        "windwp/nvim-autopairs",
+        opts = {
+            enable_check_bracket_line = false,
+        },
+    },
+    {
+        "folke/which-key.nvim",
+        opts = {
+            keys = {
+                scroll_down = "<c-j>", -- binding to scroll down inside the popup
+                scroll_up = "<c-k>", -- binding to scroll up inside the popup
+            },
+        },
+    },
 }

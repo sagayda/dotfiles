@@ -7,7 +7,7 @@
     "theme": "dark",
     "newReleaseCheckData": {
         "isEnabled": true,
-        "nextCheckTime": "2025-01-29T19:40:49.445Z",
+        "nextCheckTime": "2025-02-24T20:51:02.619Z",
         "howOftenToCheck": 86400,
         "timesChecked": 0
     },
@@ -108,8 +108,8 @@
                 "Games"
             ],
             "rule": {
-                "ignore_case": false,
-                "regex": "Minecraft|RimWorld|DOOMEternal|EmptyShell|Don't Starve Together|steam_app_*|Screw Drivers|Planet Crafter|Hearts of Iron|Project Zomboid|Derail Valley",
+                "ignore_case": true,
+                "regex": "Steam|PortProtonMinecraft|RimWorld|DOOMEternal|EmptyShell|Don't Starve Together|steam_app_*|Screw Drivers|Planet Crafter|Hearts of Iron|Project Zomboid|Derail Valley|Dome Keeper",
                 "type": "regex"
             }
         },
@@ -279,6 +279,19 @@
             "rule": {
                 "ignore_case": true,
                 "regex": "Gemini|GPT",
+                "type": "regex"
+            }
+        },
+        {
+            "data": {},
+            "id": 20,
+            "name": [
+                "Work",
+                "Documents"
+            ],
+            "rule": {
+                "ignore_case": true,
+                "regex": "LibreOffice|Google Documents",
                 "type": "regex"
             }
         }
